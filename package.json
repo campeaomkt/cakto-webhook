@@ -1,5 +1,5 @@
 {
-  "dependencies": {
-    "@vercel/node": "^5.6.6"
-  }
+  "name": "cakto-webhook",
+  "version": "1.0.0",
+  "private": true
 }
