@@ -1,26 +1,26 @@
-export default async function (req, res) {
+export default async function handler(req, res) {
+
   try {
 
     if (req.method !== "POST") {
-      return res.status(200).json({ ok: true });
+      return res.status(200).json({ status: "online" });
     }
 
-    // 🔥 Lê o body manualmente
-    let body = "";
+    console.log("Método:", req.method);
+    console.log("Body recebido:", req.body);
 
-    for await (const chunk of req) {
-      body += chunk;
-    }
-
-    const json = JSON.parse(body);
-
-    console.log("Webhook recebido:");
-    console.log(json);
-
-    return res.status(200).json({ recebido: true });
+    return res.status(200).json({
+      status: "ok",
+      recebido: req.body
+    });
 
   } catch (error) {
+
     console.error("Erro:", error);
-    return res.status(200).json({ ok: true });
+
+    return res.status(500).json({
+      error: "Erro interno"
+    });
+
   }
 }
